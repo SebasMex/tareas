@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Interés Bancario y Comisiones de Venta</title>
+</head>
+<body>
+    <h1>Calculadora de Interés Bancario y Comisiones de Venta</h1>
+
+    <h2>Problema 1: Calculadora de Interés Bancario</h2>
+    <p>Ingresa el capital inicial:</p>
+    <input type="number" id="capitalInicial1">
+    <button onclick="calcularInteres()">Calcular</button>
+    <p id="resultado1"></p>
+
+    <h2>Problema 2: Calculadora de Comisiones de Venta</h2>
+    <p>Ingresa el sueldo base:</p>
+    <input type="number" id="sueldoBase">
+    <p>Ingresa el monto de la venta 1:</p>
+    <input type="number" id="venta1">
+    <p>Ingresa el monto de la venta 2:</p>
+    <input type="number" id="venta2">
+    <p>Ingresa el monto de la venta 3:</p>
+    <input type="number" id="venta3">
+    <button onclick="calcularComisiones()">Calcular</button>
+    <p id="resultado2"></p>
+
+    <h2>Problema 3: Calculadora de Descuento en Tienda</h2>
+    <p>Ingresa el total de la compra:</p>
+    <input type="number" id="totalCompra">
+    <button onclick="calcularDescuento()">Calcular</button>
+    <p id="resultado3"></p>
+
+    <script>
+        function calcularInteres() {
+            var capitalInicial = parseFloat(document.getElementById('capitalInicial1').value);
+            var tasaInteres = 0.02; 
+            var interesGanado = capitalInicial * tasaInteres;
+            var totalDespuesMes = capitalInicial + interesGanado;
+
+            document.getElementById('resultado1').innerHTML = "Después de un mes, tendrás: $" + totalDespuesMes.toFixed(2);
+        }
+
+        function calcularComisiones() {
+            var sueldoBase = parseFloat(document.getElementById('sueldoBase').value);
+            var venta1 = parseFloat(document.getElementById('venta1').value);
+            var venta2 = parseFloat(document.getElementById('venta2').value);
+            var venta3 = parseFloat(document.getElementById('venta3').value);
+            var comisionTotal = (venta1 + venta2 + venta3) * 0.10;
+            var sueldoTotal = sueldoBase + comisionTotal;
+
+            document.getElementById('resultado2').innerHTML = "El total a recibir este mes es: $" + sueldoTotal.toFixed(2);
+        }
+
+
+        function calcularDescuento() {
+            var totalCompra = parseFloat(document.getElementById('totalCompra').value);
+            var descuento = totalCompra * 0.15;
+            var totalPagar = totalCompra - descuento;
+
+            document.getElementById('resultado3').innerHTML = "El total a pagar con descuento es: $" + totalPagar.toFixed(2);
+        }
+    </script>
+    
+    <h1>Problemas de Algoritmos</h1>
+    <section>
+        <h2>Calificación Final en Algoritmos</h2>
+        <label>Calificación parcial 1: <input type="number" id="parcial1"></label><br>
+        <label>Calificación parcial 2: <input type="number" id="parcial2"></label><br>
+        <label>Calificación parcial 3: <input type="number" id="parcial3"></label><br>
+        <label>Examen final: <input type="number" id="examenFinal"></label><br>
+        <label>Trabajo final: <input type="number" id="trabajoFinal"></label><br>
+        <button onclick="calcularCalificacionFinal()">Calcular Calificación Final</button>
+        <p id="resultadoCalificacion"></p>
+    </section>
+    <script>
+        function calcularCalificacionFinal() {
+            let parcial1 = parseFloat(document.getElementById("parcial1").value);
+            let parcial2 = parseFloat(document.getElementById("parcial2").value);
+            let parcial3 = parseFloat(document.getElementById("parcial3").value);
+            let examenFinal = parseFloat(document.getElementById("examenFinal").value);
+            let trabajoFinal = parseFloat(document.getElementById("trabajoFinal").value);
+
+            let promedioParciales = (parcial1 + parcial2 + parcial3) / 3;
+            let calificacionFinal = (promedioParciales * 0.55) + (examenFinal * 0.30) + (trabajoFinal * 0.15);
+
+            document.getElementById("resultadoCalificacion").innerText = "Calificación final: " + calificacionFinal.toFixed(2);
+        }
+    </script>
+    
+    <section>
+        <h2>Porcentaje de Hombres y Mujeres en un Grupo</h2>
+        <label>Número de hombres: <input type="number" id="numHombres"></label><br>
+        <label>Número de mujeres: <input type="number" id="numMujeres"></label><br>
+        <button onclick="calcularPorcentajes()">Calcular Porcentajes</button>
+        <p id="resultadoPorcentajes"></p>
+    </section>
+<script>
+    function calcularPorcentajes() {
+        let numHombres = parseFloat(document.getElementById("numHombres").value);
+        let numMujeres = parseFloat(document.getElementById("numMujeres").value);
+        let total = numHombres + numMujeres;
+
+        let porcentajeHombres = (numHombres / total) * 100;
+        let porcentajeMujeres = (numMujeres / total) * 100;
+
+        document.getElementById("resultadoPorcentajes").innerText = 
+            "Porcentaje de hombres: " + porcentajeHombres.toFixed(2) + "%, " +
+            "Porcentaje de mujeres: " + porcentajeMujeres.toFixed(2) + "%";
+    }
+</script>
+    <section>
+        <h2>Calcular Edad de una Persona</h2>
+        <label>Fecha de nacimiento: <input type="date" id="fechaNacimiento"></label><br>
+        <button onclick="calcularEdad()">Calcular Edad</button>
+        <p id="resultadoEdad"></p>
+    </section>
+
+    <script>
+    function calcularEdad() {
+        let fechaNacimiento = new Date(document.getElementById("fechaNacimiento").value);
+        let hoy = new Date();
+        let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+        let mes = hoy.getMonth() - fechaNacimiento.getMonth();
+
+        if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+            edad--;
+        }
+
+        document.getElementById("resultadoEdad").innerText = "Edad: " + edad + " años";
+    }
+</script>
+
+</body>
+</html>
