@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Ejemplo de Usar Algoritmia</title>
+    <style>
+        .container {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .problema-container {
+            margin-bottom: 20px;
+        }
+        .problema-title {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .problema-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1em;
+        }
+        .problema-output {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="problema-container">
+            <h2 class="problema-title">Problema 1</h2>
+            <h3>
+                Dada una lista de palabras separadas por un espacio, invertir el orden
+                de dichas palabras. Las palabras pueden estar separadas por el espacio.
+            </h3>
+            <div class="problema-content">
+                <input type="text" class="problema-input" 
+                placeholder="Ingresa las palabras separadas por un espacio" 
+                id="p1-input">
+                <button class="problema-output" id="p1-button" style="margin-top: 1rem;">Invertir Palabras</button>
+                <pre class="problema-output" id="p1-output">Esperando datos...</pre>
+            </div>
+        </div>
+
+        <div class="problema-container">
+            <h2 class="problema-title">Problema 3</h2>
+            <h3>
+                Dada una lista de palabras, encontrar la palabra que más número de caracteres
+                únicos tenga. <br>
+                Ejemplo: CASA = 3 (c, a, s) PERRO = 4 (p, e, r, o) <br>
+                Considera solamente el alfabeto A-Z en mayúsculas. Las palabras ingresadas 
+                deberán estar separadas por una coma, no se aceptan espacios.
+            </h3>
+            <div class="problema-content">
+                <input type="text" class="problema-input" 
+                placeholder="Ingresa las palabras separadas por una coma" 
+                id="p3-input">
+                <button class="problema-output" id="p3-button" style="margin-top: 1rem;">Contar Letras</button>
+                <pre class="problema-output" id="p3-output">Esperando datos...</pre>
+            </div>
+        </div>
+    </div>
+    <script>
+        function problema1() {
+            console.log('Ejecutando problema1');
+            var input = document.querySelector('#p1-input').value;
+            var palabras = input.split(' ');
+            var palabrasInvertidas = palabras.reverse();
+            var resultado = palabrasInvertidas.join(' ');
+            document.querySelector('#p1-output').textContent = resultado;
+        }
+
+        function problema3() {
+            console.log('Ejecutando problema3');
+            var input = document.querySelector('#p3-input').value;
+            var palabras = input.split(',');
+            var palabraMaxUnicos = '';
+            var maxUnicos = 0;
+
+            function contarCaracteresUnicos(palabra) {
+                var caracteresUnicos = new Set(palabra);
+                return caracteresUnicos.size;
+            }
+
+            for (var palabra of palabras) {
+                var numUnicos = contarCaracteresUnicos(palabra);
+                if (numUnicos > maxUnicos) {
+                    maxUnicos = numUnicos;
+                    palabraMaxUnicos = palabra;
+                }
+            }
+
+            document.querySelector('#p3-output').textContent = 'Palabra con más caracteres únicos: ' + palabraMaxUnicos;
+        }
+
+        document.querySelector('#p1-button').onclick = problema1;
+        document.querySelector('#p3-button').onclick = problema3;
+    </script>
+</body>
+</html>
